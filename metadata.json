@@ -1,0 +1,6 @@
+{
+  "name": "CivicSync",
+  "description": "Unified Public Alerts, Civic Issue Reporting, and Community Response Platform",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

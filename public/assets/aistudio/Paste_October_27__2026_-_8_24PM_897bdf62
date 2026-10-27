@@ -1,0 +1,1238 @@
+CIVICSYNC — COMPLETE WEBSITE REDESIGN AND FUNCTIONALITY IMPROVEMENT
+1. YOUR ROLE
+
+Act as a senior full-stack developer, UI/UX designer, frontend architect, backend engineer, database engineer, authentication specialist, and software tester.
+
+You are working on an existing project called CivicSync.
+
+Your task is to inspect, improve, redesign, and complete the existing application.
+
+Do not simply create a new landing page or a collection of attractive dashboard mockups. Implement a cohesive, responsive, fully functional web application with working navigation, role-specific authentication, separate dashboards, persistent data, and proper access control.
+
+Preserve existing working functionality wherever possible.
+
+Repair broken functionality before introducing unnecessary replacements.
+
+2. THE EXACT WEBSITE ORDER
+
+The application must follow this structure:
+
+PUBLIC LANDING PAGE
+↓
+SEPARATE LOGIN PORTAL
+↓
+SELECT A USER ROLE
+↓
+ROLE-SPECIFIC LOGIN FORM
+↓
+AUTHENTICATION
+↓
+ROLE-SPECIFIC DASHBOARD
+↓
+ROLE-SPECIFIC FEATURE PAGES
+↓
+SIGN OUT
+↓
+PUBLIC LANDING PAGE
+
+Implement this structure throughout the website.
+
+Essential navigation rules
+The landing page must be publicly accessible.
+The login portal must be a separate page.
+Selecting a login role must open that role's dedicated login form.
+After successful authentication, redirect the user to the correct dashboard.
+All feature links must open their corresponding feature pages.
+Clicking a feature must never redirect an authenticated user to the landing page.
+Clicking the logo inside an authenticated workspace must not accidentally sign the user out or redirect them to the public landing page.
+The authenticated workspace must maintain its role-specific navigation and layout while the user moves between features.
+Only the explicit Sign Out action should normally end the authenticated session.
+If a user manually opens the public landing page while authenticated, they may view the public page, but their session must remain active. The application should provide an appropriate link back to their dashboard.
+Protected pages must remain protected when accessed directly through their URLs.
+Refreshing a protected page must not unexpectedly sign the user out.
+After signing out, protected pages must no longer be accessible without authentication.
+
+Use a proper routing system. Do not implement the application as a single page where every feature button returns to the landing page.
+
+3. FIRST TASK: REDESIGN THE LANDING PAGE
+
+The existing landing page is not visually satisfactory.
+
+Redesign it with a distinctive, professional, modern CivicTech identity.
+
+Do not merely change the existing background color. Rework the layout, typography, spacing, imagery, visual hierarchy, calls to action, and section composition.
+
+New landing page palette
+
+Use the following combination:
+
+Midnight Charcoal + Electric Lime + Warm Ivory
+Main dark background: #171A19
+Primary accent: #C8F169
+Light section background: #F5F2E9
+Supporting color: #A6B7AD
+Text on dark sections: #F8F7F2
+Text on light sections: #202521
+
+Use these colors consistently on the landing page.
+
+Do not use the same blue-and-white design commonly seen in generic dashboard templates.
+
+Landing page navigation
+
+Create a responsive navigation bar containing:
+
+CivicSync logo.
+Home.
+Public Alerts.
+How It Works.
+About CivicSync.
+Contact or Help.
+Sign In.
+Get Started.
+
+Navigation requirements:
+
+Home opens the public landing page.
+Public Alerts opens the public alert listing.
+How It Works scrolls to the relevant section or opens the relevant page.
+About CivicSync opens the appropriate section or page.
+Contact or Help opens the actual support page or contact section.
+Sign In opens the separate login portal.
+Get Started opens the registration flow or login portal.
+
+Do not use empty links or href="#" as substitutes for working navigation.
+
+On mobile, provide a functional navigation menu.
+
+Landing page hero
+
+Use this headline:
+
+"One Alert. One Source. A Safer Community."
+
+Supporting text:
+
+"Stay informed with verified public alerts, report local civic problems, and track every update through one connected platform."
+
+Add two prominent buttons:
+
+Explore Public Alerts
+Report a Civic Issue
+
+The Explore Public Alerts button should open the public alert listing.
+
+The Report a Civic Issue button should direct unauthenticated users to the login portal and then to the appropriate citizen workflow.
+
+For authenticated citizens, the button should open the report submission feature directly.
+
+Landing page background image
+
+Use a high-quality photograph or illustration featuring a modern city, urban neighborhood, community, or public infrastructure.
+
+Apply a subtle dark overlay so the text remains readable.
+
+The hero must look polished and immersive without becoming cluttered.
+
+Use a suitable fallback if the image fails to load.
+
+Do not reuse the exact same hero image across every login page and dashboard.
+
+Landing page sections
+Section A: Hero
+
+Include the headline, supporting description, primary buttons, and an urban visual.
+
+Section B: Public impact indicators
+
+Display database-backed counts when real data is available:
+
+Public alerts.
+Civic reports.
+Resolved reports.
+Participating organizations.
+
+If only sample data is available, label it as demonstration data.
+
+Never invent real-world impact figures.
+
+Section C: Latest public alerts
+
+Display published, non-expired alerts with:
+
+Title.
+Category.
+Severity.
+Location.
+Issuing organization.
+Publication date.
+View Details button.
+
+Include loading, empty, and error states.
+
+Section D: How CivicSync works
+
+Present three steps:
+
+Receive verified public information.
+Report a civic issue.
+Track progress and review the resolution.
+
+Use attractive icons or illustrations.
+
+Section E: Civic issue categories
+
+Display cards for:
+
+Roads and potholes.
+Streetlights.
+Waste management.
+Water supply.
+Drainage and sanitation.
+Public infrastructure.
+Public spaces.
+Other civic issues.
+
+Use a subtle combination of two complementary colors per card.
+
+Section F: How organizations respond
+
+Explain the process:
+
+Report received → Review → Assignment → Work in progress → Resolution verification.
+
+Use a clear visual timeline.
+
+Section G: Role-specific entry cards
+
+Display four cards:
+
+Citizen.
+Organization Administrator.
+Field Staff.
+Platform Super Administrator.
+
+Each card must have its own color combination, icon, short description, and appropriate entry button.
+
+Selecting a role should open its corresponding login form.
+
+Section H: Closing call to action
+
+Headline:
+
+"Better Information. Better Coordination. Better Communities."
+
+Buttons:
+
+Explore Public Alerts.
+Sign In to CivicSync.
+Section I: Footer
+
+Include:
+
+About.
+Public Alerts.
+Help and Support.
+Privacy Policy.
+Terms of Use.
+Contact.
+Application version where appropriate.
+
+Do not invent government partnerships or official endorsements.
+
+4. CREATE A SEPARATE LOGIN PORTAL
+
+The login portal must be a dedicated page with its own route.
+
+Suggested route:
+
+/login
+
+It must not be embedded inside the landing page as the only login interface.
+
+The portal should display four large, attractive role cards.
+
+Login portal design
+
+Use an Indigo + Coral + Off-White palette:
+
+Primary: #4338CA
+Secondary: #FF8066
+Background: #FAF8F5
+Supporting: #DDD6FE
+Text: #26243A
+
+Use a split-screen or visually balanced layout.
+
+One side should contain a distinctive CivicSync image or illustration.
+
+The other side should contain the four login role cards.
+
+Each role card must have a different accent combination and a unique image or illustration.
+
+Role card 1: Citizen
+
+Palette: Forest Green + Mint.
+
+Image theme: Community, neighborhood, or residents.
+
+Description:
+
+"Receive public alerts, report civic issues, and track your submissions."
+
+Button:
+
+"Continue as Citizen"
+
+Action:
+
+Open /login/citizen.
+
+Role card 2: Organization Administrator
+
+Palette: Burgundy + Rose.
+
+Image theme: City infrastructure, municipal operations, or an urban command center.
+
+Description:
+
+"Review reports, manage assignments, publish public alerts, and monitor civic operations."
+
+Button:
+
+"Continue as Organization Administrator"
+
+Action:
+
+Open /login/organization-admin.
+
+Role card 3: Field Staff
+
+Palette: Graphite + Safety Orange.
+
+Image theme: Road maintenance, field operations, or public infrastructure work.
+
+Description:
+
+"View assigned tasks, record work progress, and upload resolution evidence."
+
+Button:
+
+"Continue as Field Staff"
+
+Action:
+
+Open /login/field-staff.
+
+Role card 4: Platform Super Administrator
+
+Palette: Deep Plum + Lavender.
+
+Image theme: City grid, architecture, or a sophisticated technology environment.
+
+Description:
+
+"Manage organizations, user permissions, platform settings, and system health."
+
+Button:
+
+"Continue as Platform Administrator"
+
+Action:
+
+Open /login/platform-admin.
+
+The Platform Administrator option must not offer public self-registration.
+
+Login portal requirements
+Use separate routes for each role's login screen.
+Include a Back to Login Portal button on each role-specific form.
+Include a Back to Home button for public navigation.
+Provide clear loading and error states.
+Provide password visibility toggles.
+Provide password-reset access.
+Do not make the four role cards look identical.
+Keep the design professional and consistent with CivicSync.
+5. DEMO LOGIN CREDENTIALS
+
+I specifically need a demo-login experience so that a reviewer can easily test all four user roles.
+
+Implement a development-only demo credential system.
+
+Important security rule
+
+Do not create public production accounts with hardcoded passwords.
+
+Do not put privileged credentials in frontend production code.
+
+Do not expose passwords through public API responses.
+
+Use environment variables, a secure development seed process, or a backend-controlled demo authentication mechanism.
+
+If the authentication provider requires real accounts, provide a development-only seeding script that creates the demo accounts securely.
+
+Demo account directory
+
+Create a separate demo credential panel on the login portal.
+
+Suggested title:
+
+"Try the CivicSync Demo"
+
+Display four demo account cards.
+
+Each card should show:
+
+Role name.
+Demo email.
+Demo password in the development environment only.
+Copy Email button.
+Copy Password button.
+Open Login button.
+
+Use these suggested development identities:
+
+Demo Citizen
+
+Email: demo.citizen@civicsync.local
+
+Password: CivicDemo!2026-Citizen
+
+Demo Organization Administrator
+
+Email: demo.admin@civicsync.local
+
+Password: CivicDemo!2026-Admin
+
+Demo Field Staff
+
+Email: demo.field@civicsync.local
+
+Password: CivicDemo!2026-Field
+
+Demo Platform Super Administrator
+
+Email: demo.superadmin@civicsync.local
+
+Password: CivicDemo!2026-Super
+
+These are proposed development credentials, not existing accounts. The application must create the accounts through a development-only setup process before they can be used.
+
+Do not assume these credentials will work automatically without account initialization.
+
+Demo authentication requirements
+Create the accounts only in the local or staging demonstration environment.
+Assign each account its correct role and organization membership.
+Use the real authentication provider where configured.
+Use secure password hashing through the provider.
+Never implement plaintext password storage.
+Never permit a demo account to grant itself another role.
+Never enable the demo credential panel in production.
+Provide a clear "Demo Mode" indicator.
+Do not grant demo accounts access to real citizens' private data.
+Make demo data fictional and isolated from production data.
+
+If demo authentication cannot be initialized automatically, display an accurate setup message and document the required initialization command.
+
+Do not fake successful login responses.
+
+6. UNIQUE LOGIN FOR EACH ROLE
+
+Each role must have a distinct login screen.
+
+Do not simply reuse the same screen and change the heading.
+
+Citizen login
+
+Palette: Forest Green + Mint + Cream.
+
+Background image: Community or neighborhood.
+
+Include:
+
+CivicSync Citizen heading.
+Email.
+Password.
+Show/hide password.
+Forgot password.
+Sign In.
+Register as Citizen.
+Back to Login Portal.
+Organization Administrator login
+
+Palette: Burgundy + Rose + Sand.
+
+Background image: Municipal operations or city infrastructure.
+
+Include:
+
+Organization Administrator heading.
+Email.
+Password.
+Show/hide password.
+Forgot password.
+Sign In.
+Back to Login Portal.
+
+Do not display public staff registration.
+
+Field Staff login
+
+Palette: Graphite + Orange + Warm Gray.
+
+Background image: Infrastructure maintenance or field operations.
+
+Include:
+
+Field Staff heading.
+Email.
+Password.
+Show/hide password.
+Forgot password.
+Sign In.
+Back to Login Portal.
+Platform Administrator login
+
+Palette: Deep Plum + Lavender + Silver.
+
+Background image: City grid, architecture, or a restrained technical illustration.
+
+Include:
+
+Platform Administrator heading.
+Email.
+Password.
+Show/hide password.
+Sign In.
+Back to Login Portal.
+
+Do not display a public registration button for this role.
+
+Login validation
+
+After authentication:
+
+Verify the user's identity.
+Retrieve the actual role from trusted user data.
+Check the account status.
+Check organization membership when applicable.
+Redirect to the correct dashboard.
+Reject unauthorized role access.
+Never trust a role value submitted by the frontend.
+7. DISTINCT DASHBOARDS FOR ALL FOUR ROLES
+
+Every role must have a separate authenticated application workspace.
+
+Use distinct navigation, dashboard layouts, feature modules, backgrounds, and page-specific color combinations.
+
+Citizen dashboard
+
+Route:
+
+/citizen/dashboard
+
+Palette:
+
+Forest Green + Soft Mint + Warm Cream.
+
+Dashboard features:
+
+Personal overview.
+My Reports summary.
+Recent public alerts.
+Report an Issue shortcut.
+Reports awaiting review.
+Reports in progress.
+Resolved reports.
+Recent activity.
+Notifications.
+
+Sidebar:
+
+Overview.
+Public Alerts.
+Report an Issue.
+My Reports.
+Issue Map.
+Saved Alerts.
+Notifications.
+Profile and Preferences.
+Help and Support.
+Organization Administrator dashboard
+
+Route:
+
+/organization-admin/dashboard
+
+Palette:
+
+Deep Burgundy + Rose + Sand.
+
+Dashboard features:
+
+Operational overview.
+New reports.
+Reports awaiting review.
+Unassigned reports.
+Active assignments.
+Overdue reports.
+Reports awaiting resolution verification.
+Department workload.
+Category analytics.
+Recent administrative activity.
+
+Sidebar:
+
+Overview.
+Report Review Queue.
+All Reports.
+Assignment Management.
+Public Alert Management.
+Departments and Categories.
+Staff Directory.
+Resolution Verification.
+Analytics and Reports.
+Notifications.
+Audit History.
+Organization Settings.
+Field Staff dashboard
+
+Route:
+
+/field-staff/dashboard
+
+Palette:
+
+Graphite + Safety Orange + Warm Gray.
+
+Dashboard features:
+
+My Assignments.
+New assignments.
+Work in progress.
+Tasks awaiting verification.
+Overdue tasks.
+Assignment map.
+Recent work history.
+Notifications.
+
+Sidebar:
+
+Overview.
+My Work.
+Assignment Map.
+Progress Updates.
+Evidence Uploads.
+Work History.
+Notifications.
+Profile.
+Platform Super Administrator dashboard
+
+Route:
+
+/platform-admin/dashboard
+
+Palette:
+
+Deep Plum + Lavender + Silver.
+
+Dashboard features:
+
+Platform overview.
+Total organizations.
+Active organizations.
+Pending onboarding requests.
+User distribution.
+Platform-wide report statistics.
+Public alert statistics.
+Integration health.
+Recent platform events.
+
+Sidebar:
+
+Platform Overview.
+Organization Directory.
+Organization Onboarding.
+User and Role Management.
+Platform Categories.
+Global Configuration.
+Audit Logs.
+Integration Health.
+System Status.
+Platform Notifications.
+
+Do not duplicate the organization administrator dashboard and simply rename it.
+
+The platform administrator must focus on governance and platform-wide operations, not routine assignment management.
+
+8. EACH FEATURE MUST HAVE ITS OWN PAGE AND DASHBOARD LAYOUT
+
+This is a critical requirement.
+
+Do not create one large dashboard containing every feature.
+
+Do not display every feature in the same generic card grid.
+
+Each feature must open a separate page or a clearly defined full-screen workspace with its own title, layout, relevant background treatment, and color combination.
+
+The main dashboard provides an overview. The feature page provides the complete workflow.
+
+Citizen feature pages
+Public Alerts
+
+Palette: Coral + Marigold.
+
+Use a compact alert feed with severity badges, filters, and relevant alert visuals.
+
+Alert Details
+
+Palette: Crimson + Ivory.
+
+Use a focused detail layout with clear severity, issuing organization, dates, location, and instructions.
+
+Report an Issue
+
+Palette: Teal + Peach.
+
+Use a guided form with category selection, location entry, image uploads, validation, and submission confirmation.
+
+My Reports
+
+Palette: Forest Green + Warm Cream.
+
+Use a searchable list or table with status badges and report detail links.
+
+Report Tracking
+
+Palette: Violet + Mint.
+
+Use a visual timeline, status history, and relevant public notes.
+
+Issue Map
+
+Palette: Olive + Pale Yellow.
+
+Use a map-first layout with marker filters and a report list.
+
+Notifications
+
+Palette: Indigo + Peach.
+
+Use a notification center with unread states, timestamps, and record links.
+
+Saved Alerts
+
+Palette: Sage + Cream.
+
+Use a saved-alert list with remove actions.
+
+Profile and Preferences
+
+Palette: Sage + Warm Ivory.
+
+Use organized profile and notification settings forms.
+
+Organization administrator feature pages
+Report Review Queue
+
+Palette: Burgundy + Rose.
+
+Use a review table, filters, report detail panel, and approval/rejection actions.
+
+All Reports
+
+Palette: Burgundy + Sand.
+
+Use a searchable operational table with sorting, pagination, and filters.
+
+Assignment Management
+
+Palette: Graphite + Orange.
+
+Use an assignment workspace with report details, staff selection, department selection, and assignment confirmation.
+
+Public Alert Management
+
+Palette: Coral + Marigold.
+
+Use a list of alerts, draft editor, scheduling form, publication controls, and alert history.
+
+Departments and Categories
+
+Palette: Sage + Burgundy.
+
+Use management tables and validated create/edit forms.
+
+Staff Directory
+
+Palette: Purple + Silver.
+
+Use staff records, department information, active status, and workload summaries.
+
+Resolution Verification
+
+Palette: Green + Sand.
+
+Use an evidence-focused review layout with original report details, submitted work, evidence, and verification controls.
+
+Analytics and Reports
+
+Palette: Plum + Gold.
+
+Use interactive charts, date filters, department filters, and authorized exports.
+
+Audit History
+
+Palette: Slate + Copper.
+
+Use a chronological event table with filters.
+
+Organization Settings
+
+Palette: Burgundy + Beige.
+
+Use clearly separated settings sections.
+
+Field staff feature pages
+My Work
+
+Palette: Graphite + Orange.
+
+Use task cards or a work queue with priority, location, and status.
+
+Assignment Map
+
+Palette: Olive + Orange.
+
+Use a map-first interface with authorized assignment markers.
+
+Progress Updates
+
+Palette: Teal + Warm Gray.
+
+Use a work-update form with status selection, notes, and optional evidence.
+
+Evidence Uploads
+
+Palette: Green + Sand.
+
+Use upload cards, image previews, and evidence history.
+
+Work History
+
+Palette: Slate + Mint.
+
+Use a chronological record of completed assignments and updates.
+
+Notifications
+
+Palette: Indigo + Peach.
+
+Use a compact task-related notification center.
+
+Platform administrator feature pages
+Organization Directory
+
+Palette: Plum + Silver.
+
+Use a searchable organization table with status indicators.
+
+Organization Onboarding
+
+Palette: Lavender + Gold.
+
+Use an approval queue and organization detail panel.
+
+User and Role Management
+
+Palette: Purple + Silver.
+
+Use account tables, role information, organization membership, and authorized actions.
+
+Platform Categories
+
+Palette: Sage + Plum.
+
+Use configurable category-management forms and tables.
+
+Global Configuration
+
+Palette: Slate + Lavender.
+
+Use grouped configuration forms with validation and confirmation.
+
+Audit Logs
+
+Palette: Slate + Copper.
+
+Use a searchable, filterable event timeline.
+
+Integration Health
+
+Palette: Graphite + Mint.
+
+Use service status cards for the database, authentication, storage, email, SMS, and maps when configured.
+
+System Status
+
+Palette: Deep Plum + Silver.
+
+Use operational status indicators and relevant diagnostic summaries without exposing secrets.
+
+Do not create decorative feature pages that have no functioning workflow.
+
+Implement the appropriate backend connection for every feature.
+
+9. BACKGROUND IMAGES FOR LOGIN AND FEATURE PAGES
+
+Every role login screen must have its own appropriate background image or illustration.
+
+Each feature page must also have a distinct visual treatment.
+
+However, do not place a full-screen photograph behind every table or form.
+
+Use one of the following approaches according to the page's purpose:
+
+Full-width background image with a readable overlay for hero sections.
+Small image header for data-heavy pages.
+Side-panel image for login screens.
+Subtle illustration or texture for settings pages.
+Map imagery for location-based features.
+Evidence thumbnails for resolution pages.
+Restrained abstract graphics for audit and system pages.
+
+Requirements:
+
+Do not repeat the same image everywhere.
+Use licensed, openly usable, or project-owned images.
+Optimize image sizes.
+Provide fallbacks if images fail to load.
+Keep text readable.
+Avoid images that reduce accessibility.
+Prefer locally bundled assets for important production visuals where practical.
+Use suitable alternative text.
+Do not put distracting photographs behind tables.
+Keep page-specific visual identities recognizable.
+10. SIDEBAR AND NAVIGATION REQUIREMENTS
+
+Each authenticated role must have its own sidebar.
+
+The sidebar must use the role's primary color palette and appropriate contrasting colors.
+
+Each feature item should have:
+
+Icon.
+Label.
+Active state.
+Hover state.
+Keyboard focus state.
+Appropriate route.
+
+When a feature is active:
+
+Highlight the corresponding navigation item.
+Keep the current role's sidebar visible.
+Preserve the authenticated layout.
+Display the correct feature page.
+Avoid redirecting to the landing page.
+
+Use nested navigation only where it improves usability.
+
+For mobile screens, use a collapsible sidebar or suitable mobile navigation.
+
+Include a profile menu and an explicit Sign Out action.
+
+Do not place the Sign Out action where users can accidentally trigger it while navigating between features.
+
+11. AUTHENTICATED ROUTING AND SESSION PERSISTENCE
+
+Use React Router or the routing system already established in the project.
+
+Implement:
+
+Public routes.
+Authentication routes.
+Protected routes.
+Role-specific route guards.
+A persistent authenticated application layout.
+Role-specific navigation.
+Session-aware redirects.
+Unauthorized access screens.
+
+Example route structure:
+
+/ — Public landing page
+
+/login — Login portal
+
+/login/citizen — Citizen login
+
+/login/organization-admin — Organization Administrator login
+
+/login/field-staff — Field Staff login
+
+/login/platform-admin — Platform Administrator login
+
+/citizen/dashboard
+
+/citizen/alerts
+
+/citizen/reports/new
+
+/citizen/reports
+
+/citizen/reports/:id
+
+/citizen/map
+
+/citizen/notifications
+
+/organization-admin/dashboard
+
+/organization-admin/review
+
+/organization-admin/reports
+
+/organization-admin/assignments
+
+/organization-admin/alerts
+
+/organization-admin/verification
+
+/organization-admin/analytics
+
+/organization-admin/settings
+
+/field-staff/dashboard
+
+/field-staff/work
+
+/field-staff/map
+
+/field-staff/progress
+
+/field-staff/evidence
+
+/field-staff/history
+
+/platform-admin/dashboard
+
+/platform-admin/organizations
+
+/platform-admin/onboarding
+
+/platform-admin/users
+
+/platform-admin/configuration
+
+/platform-admin/audit
+
+/platform-admin/integrations
+
+Adjust routes to the existing project where appropriate.
+
+Routing rules
+An unauthenticated visitor opening a protected route must be redirected to login.
+After login, return the user to the originally requested page only if their role is authorized to access it.
+Otherwise, send them to their correct dashboard.
+Refreshing a valid protected page must preserve the authenticated session.
+Moving between features must not reset authentication.
+A user must not be able to open another role's dashboard by manually typing its URL.
+Invalid routes must show an appropriate not-found page.
+Expired sessions must be handled safely.
+Signing out must clear private client-side state and redirect to the landing page.
+
+Never rely solely on frontend route guards. Protect the underlying API and data as well.
+
+12. FUNCTIONALITY REQUIREMENTS
+
+Every visible interactive element must have a real action.
+
+Implement and test:
+
+Login.
+Logout.
+Registration where permitted.
+Password reset.
+Search.
+Filters.
+Sorting.
+Pagination.
+Form validation.
+Report submission.
+Alert viewing.
+Alert publishing for authorized administrators.
+Assignment creation.
+Status updates.
+Evidence upload.
+Resolution verification.
+Notification read/unread states.
+Saved alerts.
+Analytics filters.
+Authorized CSV exports.
+Profile settings.
+Organization management.
+Audit history.
+
+Do not use fake success messages.
+
+Do not claim a record has been saved until the backend confirms the operation.
+
+If an external integration is not configured, explain what is missing.
+
+If the backend is unavailable, show a clear error rather than silently replacing real data with mock data.
+
+13. PRESERVE THE CIVICSYNC PRODUCT SCOPE
+
+CivicSync remains a software-only unified public alert and civic issue reporting platform.
+
+Do not introduce:
+
+IoT devices.
+Hardware dependencies.
+Machine learning.
+Large language models.
+RAG.
+AI agents.
+Computer vision.
+Blockchain.
+
+Use ordinary database queries, validation, deterministic rules, role-based permissions, configurable categories, and analytics.
+
+Keep the two core capabilities:
+
+Unified public alerts.
+Civic issue reporting and resolution tracking.
+
+Do not remove existing useful features from the project.
+
+14. DESIGN AND FUNCTIONALITY TESTING
+
+After implementation, verify the following.
+
+Landing page
+New color combination is applied.
+Hero image loads and has readable contrast.
+Navigation works.
+Public alerts load.
+Role entry cards work.
+Login opens the separate login portal.
+Responsive layout works.
+Login portal
+All four roles are displayed.
+Each role has a distinct color palette and image.
+Each role opens the correct login form.
+Demo credentials are displayed only in development mode.
+Copy buttons work.
+Login errors are understandable.
+Invalid role access is rejected.
+Dashboards
+Each role sees its own dashboard.
+Each role has a distinct sidebar.
+Each role sees only authorized features.
+Dashboard data is accurate and comes from the correct source.
+Feature pages use distinct visual treatments.
+Feature navigation does not redirect to the landing page.
+Session handling
+Login works.
+Refreshing a protected page preserves a valid session.
+Switching features preserves authentication.
+Direct unauthorized URLs are rejected.
+Sign-out clears private state.
+After sign-out, protected pages require authentication.
+Feature workflows
+Forms validate correctly.
+Report submission persists data.
+Assignment changes persist.
+Evidence uploads work.
+Alert publication works for authorized users.
+Notifications update correctly.
+Analytics reflect actual records.
+Failed API requests show errors rather than fake success.
+Technical quality
+No broken imports.
+No duplicate conflicting routes.
+No invalid JSON parsing.
+No runtime errors caused by undefined API response values.
+No exposed credentials.
+No unauthorized access to another user's data.
+Production build succeeds.
+15. IMPLEMENTATION INSTRUCTIONS
+
+Begin by inspecting the existing CivicSync project.
+
+Do not immediately replace every file.
+
+First determine:
+
+Which routes already exist.
+How authentication currently works.
+Which dashboards already exist.
+Which features are functional.
+Which APIs are connected.
+Which database tables exist.
+Which navigation links are broken.
+Why the landing page currently looks incorrect.
+Why feature navigation may return to the landing page.
+
+Then implement the following priorities in order:
+
+Priority 1
+
+Redesign the public landing page with the new palette, imagery, typography, and section layout.
+
+Priority 2
+
+Create the separate login portal and four role-specific login screens.
+
+Priority 3
+
+Implement secure development-only demo accounts and the demo credential panel.
+
+Priority 4
+
+Repair authenticated routing, session persistence, protected routes, and sign-out.
+
+Priority 5
+
+Create or improve the four distinct role dashboards and sidebars.
+
+Priority 6
+
+Create separate feature pages with distinct color combinations, relevant background treatments, and working actions.
+
+Priority 7
+
+Connect the features to the actual backend and database.
+
+Priority 8
+
+Test the complete navigation flow and all important role-specific workflows.
+
+Priority 9
+
+Fix errors and provide a concise implementation report.
+
+Do not stop after implementing the landing page or the visual design.
+
+Do not remove working features to simplify the task.
+
+Do not claim completion for features that have not been tested.
+
+If the current project is already partially implemented, continue from its current state and preserve useful code.
+
+FINAL OBJECTIVE
+
+Deliver a polished, functional CivicSync website with this exact primary order:
+
+Landing Page → Separate Login Portal → Role-Specific Login → Role-Specific Dashboard → Individual Feature Pages → Explicit Sign Out → Landing Page.
+
+The landing page must have a new visual identity.
+
+The login portal must offer four clearly differentiated roles and development-only demo credentials.
+
+Every role must have a unique dashboard, sidebar, color combination, and relevant background imagery.
+
+Every feature must open its own appropriate page and must not redirect users back to the landing page while they remain authenticated.
+
+The application must be responsive, secure, functional, and consistent with the existing CivicSync solution.

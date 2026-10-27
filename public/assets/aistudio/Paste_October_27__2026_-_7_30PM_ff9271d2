@@ -1,0 +1,2570 @@
+CIVICSYNC — COMPLETE MASTER PROMPT
+Unified Public Alerts, Civic Issue Reporting, and Community Response Platform
+1. YOUR ROLE AND PRIMARY OBJECTIVE
+
+Act as a senior full-stack software engineer, software architect, UI/UX designer, product strategist, database engineer, security engineer, and quality assurance specialist.
+
+Build a complete, production-oriented web application named CivicSync.
+
+Product name: CivicSync
+Tagline: One Alert. One Source. A Safer Community.
+Category: Smart Cities & CivicTech
+Product type: Responsive web application
+Primary objective: Unify public alerts and civic issue reporting in one reliable platform, helping citizens receive consistent public information, report local problems, and track the resolution of those problems.
+
+The application must look and behave like a credible civic technology product, not a basic student demo, static prototype, or collection of disconnected dashboard screens.
+
+Implement a complete working system with:
+
+A polished public landing page.
+Authentication and registration.
+Four distinct user roles.
+Role-specific dashboards.
+Different features for every role.
+Different color combinations for individual pages and feature modules.
+Appropriate background imagery.
+Working forms, buttons, filters, charts, tables, maps, and navigation.
+Persistent database-backed records.
+Secure authentication and authorization.
+A complete civic issue lifecycle.
+A unified public alert system.
+Notifications and activity history.
+Responsive desktop, tablet, and mobile layouts.
+Clear loading, success, empty, validation, and error states.
+Realistic sample data for initial demonstration, clearly distinguished from actual records.
+
+Do not generate only a design, wireframe, frontend mockup, or implementation plan. Build the actual application and verify that its main workflows function.
+
+2. NON-NEGOTIABLE PROJECT CONSTRAINTS
+
+Follow these requirements throughout development.
+
+2.1 Software-only implementation
+
+Build CivicSync entirely as a software application.
+
+Do not require or introduce:
+
+IoT devices.
+Physical sensors.
+Dedicated hardware.
+Raspberry Pi or Arduino.
+Machine learning models.
+Large language models.
+Retrieval-augmented generation (RAG).
+AI agents.
+Paid AI APIs.
+Computer vision.
+Unnecessary blockchain infrastructure.
+
+Use conventional software engineering, database queries, deterministic business rules, configurable categories, validation, filtering, aggregation, and analytics.
+
+For example, classify a civic report using a predefined category selected by the citizen. Assign a department using a configurable category-to-department mapping. Calculate statistics using database queries.
+
+Do not pretend that rule-based classification is machine learning.
+
+2.2 No fake functionality
+
+Every visible interactive control must perform its intended action or clearly indicate that the feature is unavailable.
+
+Do not create buttons that do nothing.
+
+Do not use hardcoded dashboard values as if they were live database results.
+
+Do not display a successful submission message unless the record has actually been saved.
+
+Do not simulate an administrator's approval when no approval operation occurred.
+
+Do not claim that an email, SMS, push notification, or external message was delivered unless the corresponding integration confirms delivery.
+
+If an external service requires credentials, build the integration boundary, configuration instructions, and clear status handling. Never expose credentials in frontend code.
+
+2.3 No duplicated dashboards or role features
+
+Each role must have its own dashboard, navigation, permissions, information hierarchy, and primary actions.
+
+Do not simply duplicate the same dashboard four times and change the heading.
+
+Do not repeat entire feature modules across role dashboards.
+
+Shared data can appear in different forms when required by the user's responsibilities. For example, a citizen sees their own report status, while an administrator sees the overall report queue. These are distinct workflows.
+
+2.4 Existing project preservation
+
+If source code already exists:
+
+Inspect the existing repository and its directory structure.
+Identify the framework, routes, components, authentication system, database, and existing features.
+Reuse working code where appropriate.
+Repair broken functionality before introducing unnecessary replacements.
+Preserve working integrations and existing useful functionality.
+Avoid creating duplicate components, conflicting route definitions, and multiple competing authentication systems.
+Update dependencies only when necessary.
+Never delete working features merely to make implementation easier.
+
+If the project is new, establish the architecture described below.
+
+3. PRODUCT VISION AND PROBLEM STATEMENT
+3.1 Problem
+
+Public information is frequently distributed through different communication channels, including social media, messaging services, websites, SMS, radio, and departmental announcements.
+
+When messages are inconsistent, outdated, difficult to verify, or spread across different channels, citizens may struggle to identify which information is current and trustworthy.
+
+Civic issues such as damaged roads, overflowing waste bins, broken streetlights, drainage problems, water supply interruptions, and public safety concerns also frequently require residents to contact different departments and follow separate processes.
+
+Citizens may have difficulty answering basic questions:
+
+Has anyone received my complaint?
+Which department is responsible?
+Has the problem been assigned?
+Is someone working on it?
+Has the issue actually been resolved?
+Where can I find verified public alerts?
+
+Authorities also need a structured method to review reports, assign responsibilities, communicate progress, maintain records, and analyze recurring issues.
+
+3.2 CivicSync solution
+
+CivicSync combines two complementary capabilities:
+
+Capability A: Unified Public Alerts
+
+Provide a central platform where authorized organizations can create, verify, publish, update, and archive public alerts.
+
+Citizens can browse alerts, filter them by location and category, view their details, and access a consistent source of information.
+
+Capability B: Civic Issue Reporting and Resolution
+
+Allow citizens to report local problems with descriptions, categories, locations, and supporting images.
+
+Authorized organization administrators review the submissions, assign reports to responsible field staff, monitor progress, and verify closure.
+
+Citizens can track the lifecycle of their reports and receive notifications about meaningful status changes.
+
+Supporting capabilities
+Role-based dashboards.
+Geographic issue visualization.
+Department assignment.
+Report filtering and search.
+Notification history.
+Resolution evidence.
+Audit trails.
+Operational analytics.
+Exportable reports.
+Account and organization management.
+
+CivicSync must not claim to replace every government communication channel. Its initial purpose is to provide a unified, traceable platform for alerts and civic issue management.
+
+4. TECHNOLOGY STACK
+
+Use the following stack unless the existing repository already has a working equivalent.
+
+Frontend
+React.
+TypeScript.
+Vite.
+Tailwind CSS.
+TanStack Query for server-state management.
+React Router for navigation.
+React Leaflet with OpenStreetMap-compatible tiles for mapping.
+Recharts for charts and analytics.
+Lucide React for icons.
+A consistent component system for forms, dialogs, tables, cards, menus, badges, and notifications.
+
+Use reusable components without forcing every page into the same visual layout.
+
+Backend
+Node.js.
+Express.
+TypeScript where practical.
+REST API architecture.
+Server-side input validation.
+Centralized error handling.
+Structured authorization middleware.
+Request logging and security controls.
+Database and authentication
+
+Preferred setup:
+
+Supabase PostgreSQL for persistent records.
+Supabase Auth for authentication.
+Supabase Storage for uploaded evidence and report images when configured.
+PostgreSQL row-level security where appropriate.
+Server-side role and organization authorization checks.
+
+If the existing project already uses Firebase Auth, do not create a second authentication system unnecessarily. Preserve the existing provider and implement a consistent backend authorization model around it.
+
+Development requirements
+Keep frontend and backend responsibilities clearly separated.
+Store configuration in environment variables.
+Provide an .env.example file containing placeholders, never real credentials.
+Configure development and production API URLs correctly.
+Include database schema and migration instructions.
+Provide setup, run, build, and deployment documentation.
+Make production builds succeed.
+Do not expose service-role keys or other privileged credentials in the browser.
+Use migrations rather than relying on undocumented manual database changes.
+5. USER ROLES AND PERMISSIONS
+
+Implement four distinct roles.
+
+Role 1: Citizen
+
+Purpose: Receive alerts, report civic problems, and track personal submissions.
+
+Can:
+
+Browse published public alerts.
+Search and filter alerts.
+View alert details and affected areas.
+Create civic reports.
+Upload supporting evidence.
+Select the issue category.
+Provide a location.
+Track their own reports.
+View report timelines.
+Receive in-app notifications.
+Comment on or respond to authorized requests for information.
+Confirm whether a reported issue appears resolved.
+Reopen an eligible report when the resolution is disputed.
+Manage personal notification preferences.
+Update their profile.
+View their own activity history.
+
+Cannot:
+
+Approve their own reports as an administrator.
+Access private reports belonging to unrelated citizens.
+Assign field staff.
+Publish official alerts.
+Modify organization settings.
+Access platform-wide administrative controls.
+Role 2: Organization Administrator
+
+Purpose: Manage civic operations for an authorized organization or municipal department.
+
+Can:
+
+View reports belonging to their organization.
+Review submitted reports.
+Request additional information.
+Approve reports for processing.
+Reject invalid, duplicate, or out-of-scope reports with a recorded reason.
+Assign reports to eligible field staff.
+Change permitted workflow statuses.
+Publish and update authorized public alerts.
+Manage relevant departments and categories.
+Review operational analytics.
+View overdue reports.
+Monitor staff workloads.
+Inspect resolution evidence.
+Verify resolutions according to policy.
+Export authorized operational reports.
+Review organization activity logs.
+Manage organization-level notification settings.
+
+Cannot:
+
+Access unrelated organizations' private records.
+Grant themselves platform super-administrator privileges.
+Change protected platform-wide security settings.
+Delete or rewrite audit history.
+Role 3: Field Staff
+
+Purpose: Work on assigned civic issues and record progress.
+
+Can:
+
+View reports assigned to them.
+View relevant locations and issue details.
+Accept or acknowledge assignments.
+Update permitted report statuses.
+Add progress notes.
+Upload before-and-after evidence.
+Record work performed.
+Flag access problems or dependencies.
+Request reassignment when authorized.
+Mark assigned work as awaiting verification.
+View their own workload and deadlines.
+Receive assignment and status notifications.
+View their work history.
+
+Cannot:
+
+Access every citizen's private information.
+Publish official public alerts.
+Assign arbitrary reports to other staff.
+Change organization-wide permissions.
+Modify another staff member's assignments without authorization.
+Role 4: Platform Super Administrator
+
+Purpose: Manage the CivicSync platform itself.
+
+Can:
+
+View platform-level operational statistics.
+Create and manage organization accounts.
+Approve organization onboarding.
+Activate, suspend, or deactivate organization accounts.
+Manage user roles and account status.
+Review platform-wide alert and report activity.
+Configure platform-wide categories.
+Review audit events.
+Inspect integration health.
+Configure global notification policies.
+View system errors and operational status.
+Manage platform configuration.
+Access authorized cross-organization reports.
+
+Use explicit permissions for sensitive operations.
+
+Do not give this role unlimited direct database access through the frontend. Sensitive actions must be validated and authorized by the backend.
+
+6. APPLICATION NAVIGATION AND AUTHENTICATION FLOW
+
+The application must follow this order:
+
+Public Landing Page → Login or Registration → Role-Specific Dashboard → Selected Feature Page → Sign Out
+
+Landing page
+
+Anyone can access the landing page without logging in.
+
+Public visitors can explore the product, browse permitted public alerts, learn how reporting works, and choose to register or sign in.
+
+Authentication
+
+After successful authentication:
+
+Retrieve the authenticated user's profile and role.
+Validate that the account is active.
+Determine the user's authorized organization, if applicable.
+Redirect to the correct dashboard.
+Load only the navigation and data the user is permitted to access.
+Protected routes
+
+Unauthenticated users must not access protected pages.
+
+If an unauthenticated visitor opens a protected URL, redirect them to login.
+
+After login, return them to their originally requested page only if they are authorized to access it. Otherwise, redirect them to their role-specific dashboard.
+
+Sign-out behavior
+
+When a user signs out:
+
+End the authenticated session through the configured authentication provider.
+Clear sensitive client-side state and cached private data.
+Prevent protected pages from remaining accessible through ordinary navigation.
+Redirect to the public landing page.
+Update the navigation to show public actions.
+Do not display the previous user's dashboard or private information.
+Do not silently sign the user back in unless an explicit supported authentication flow requires it.
+
+Use secure session handling appropriate to the selected authentication provider.
+
+Registration
+
+Provide a public registration page for citizens.
+
+Organization accounts and staff accounts must use a controlled onboarding process.
+
+Do not allow anyone to select Platform Super Administrator from a public registration dropdown.
+
+Organization administrators should invite or provision their staff through authorized workflows.
+
+Validate email addresses, password requirements, required fields, duplicate accounts, and account status.
+
+Provide password-reset functionality through the configured authentication provider.
+
+7. GLOBAL UI/UX DESIGN DIRECTION
+
+Create a polished, modern, premium civic technology interface.
+
+The application must look like a real operational product used by citizens, municipal teams, and field personnel.
+
+Avoid:
+
+A generic blue-and-white dashboard used everywhere.
+Repeating the same cards on every page.
+Excessive gradients.
+Random decorative blobs.
+Huge empty spaces.
+Unreadable text over photographs.
+Excessive glassmorphism.
+Overloaded sidebars.
+Fake 3D elements that interfere with usability.
+Repeated background images across unrelated features.
+Default browser-looking forms.
+Inconsistent spacing and typography.
+Placeholder links that do not work.
+Repeated identical dashboard designs for every role.
+Typography
+
+Use:
+
+Manrope or Space Grotesk for major headings.
+Inter for body text, forms, labels, and dashboard content.
+IBM Plex Mono for identifiers, report IDs, timestamps, and technical metadata when appropriate.
+
+Maintain clear heading hierarchy, readable line lengths, and accessible font sizes.
+
+Layout
+
+Use a consistent design system for:
+
+Navigation.
+Buttons.
+Input fields.
+Tables.
+Cards.
+Dialogs.
+Status badges.
+Alerts.
+Tooltips.
+Empty states.
+Error states.
+Pagination.
+Breadcrumbs.
+Loading skeletons.
+
+However, allow individual pages and feature modules to have distinct visual identities.
+
+Responsive design
+
+Support:
+
+Desktop monitors.
+Laptops.
+Tablets.
+Mobile phones.
+
+Desktop dashboards may use a sidebar.
+
+Mobile dashboards must use an appropriate compact navigation pattern, such as a collapsible drawer or mobile navigation bar.
+
+Tables should become scrollable or transform into compact cards when necessary.
+
+Forms, maps, charts, and dialogs must remain usable on small screens.
+
+Accessibility
+Maintain sufficient contrast.
+Provide visible keyboard focus.
+Label form controls.
+Support keyboard navigation.
+Do not communicate status through color alone.
+Provide accessible names for icon-only buttons.
+Use semantic HTML.
+Respect reduced-motion preferences.
+8. COLOR SYSTEM: DIFFERENT MIXED PALETTES FOR DIFFERENT PAGES
+
+Do not use one color combination across the entire website.
+
+Create a shared design system with page-specific theme tokens.
+
+Every major feature should have a recognizable combination of two or more complementary colors.
+
+Keep text contrast readable and maintain a coherent CivicSync identity through typography, spacing, icons, and component behavior.
+
+Use the following proposed palette plan.
+
+8.1 Public landing page
+
+Palette: Midnight Charcoal + Electric Lime + Warm Ivory.
+
+Main background: #171A19.
+Primary accent: #C8F169.
+Secondary background: #F5F2E9.
+Supporting color: #A6B7AD.
+Main text on dark sections: #F8F7F2.
+Main text on light sections: #202521.
+
+Style:
+
+Premium editorial layout.
+Full-width urban photography.
+Bold typography.
+Lime-colored calls to action.
+Large statistic treatments.
+Dark and light sections alternating intentionally.
+Clean illustrations and geographic elements.
+8.2 Citizen dashboard
+
+Palette: Forest Green + Soft Mint + Warm Cream.
+
+Primary: #176B52.
+Secondary: #9ADBC0.
+Background: #F5F7EF.
+Accent: #E8B86D.
+Text: #25332D.
+
+Style:
+
+Calm, accessible, community-oriented.
+Personal report summary.
+Alert feed.
+Location-aware issue browsing.
+Clear progress indicators.
+8.3 Organization administrator dashboard
+
+Palette: Deep Burgundy + Rose + Sand.
+
+Primary: #762E42.
+Secondary: #E9A7B2.
+Background: #F8F0EA.
+Accent: #D8B36A.
+Text: #34262B.
+
+Style:
+
+Operational command center.
+Review queues.
+Department assignment.
+SLA and overdue indicators.
+Report prioritization.
+Analytics and workload summaries.
+8.4 Field staff dashboard
+
+Palette: Graphite + Safety Orange + Warm Gray.
+
+Primary: #30363A.
+Secondary: #F28C45.
+Background: #F2F0EB.
+Supporting color: #D7D2C8.
+Success: #477A5C.
+Text: #23282B.
+
+Style:
+
+Task-oriented.
+Strong visual hierarchy.
+Large assignment cards.
+Map-first work interface.
+Clear status buttons.
+Easy access to evidence uploads.
+8.5 Platform super-administrator dashboard
+
+Palette: Deep Plum + Lavender + Silver.
+
+Primary: #49345F.
+Secondary: #B8A0E3.
+Background: #F3F0F7.
+Accent: #D8DCE5.
+Text: #292432.
+
+Style:
+
+System oversight.
+Organization management.
+Security and audit logs.
+Platform-wide analytics.
+Integration health.
+8.6 Authentication pages
+
+Palette: Indigo + Coral + Off-White.
+
+Primary: #4338CA.
+Secondary: #FF8066.
+Background: #FAF8F5.
+Supporting color: #DDD6FE.
+Text: #26243A.
+
+Use a distinct authentication composition rather than copying the landing-page hero.
+
+The login screen may use a two-column design with a photographic or illustrated information panel and a clean form panel.
+
+8.7 Additional feature-module themes
+
+Apply these combinations to individual feature pages. They must not all be forced into the dashboard's primary color.
+
+Feature	Color combination	Suggested visual treatment
+Public alerts	Coral + Marigold	High-visibility alert feed
+Alert details	Crimson + Ivory	Strong severity hierarchy
+Civic issue reporting	Teal + Peach	Friendly, guided submission form
+Issue map	Olive + Pale Yellow	Geographic exploration
+Report tracking	Violet + Mint	Timeline and progress tracking
+Field assignments	Charcoal + Orange	Work queue and map
+Analytics	Plum + Gold	Charts and trend analysis
+Notifications	Indigo + Peach	Compact notification center
+Resolution evidence	Green + Sand	Before-and-after comparison
+Audit history	Slate + Copper	Structured event timeline
+Organization management	Burgundy + Beige	Administrative tables
+User management	Purple + Silver	Role and account controls
+Settings	Sage + Cream	Calm configuration interface
+Help and support	Turquoise + Coral	Friendly guidance cards
+
+Each page should have its own background treatment, accents, and relevant imagery where appropriate.
+
+Do not recolor every component randomly. Define tokens and apply them consistently within each module.
+
+9. BACKGROUND IMAGES AND VISUAL ASSETS
+
+Use relevant, high-quality visual assets for the landing page, authentication screens, and selected feature pages.
+
+Choose imagery that communicates the actual purpose of each page.
+
+Landing page
+
+Use an urban neighborhood or modern city photograph featuring streets, public infrastructure, or community life.
+
+Place text over a darkened overlay or in a separate light section so the text remains readable.
+
+Citizen pages
+
+Use subtle, authentic images related to community participation, neighborhoods, parks, and public infrastructure.
+
+Do not place distracting photographs behind forms or data tables.
+
+Organization administration
+
+Use restrained urban infrastructure imagery in the page header or side panel.
+
+Keep the main operational workspace clean and information-dense.
+
+Field staff
+
+Use road maintenance, public infrastructure, municipal maintenance, or city operations imagery in appropriate headers and assignment details.
+
+Prioritize maps, task information, and evidence over decorative backgrounds.
+
+Platform administration
+
+Use a restrained abstract city-grid illustration, architectural image, or subtle geometric background.
+
+Login and registration
+
+Use a distinct photographic or illustrated composition with a subtle overlay.
+
+Avoid using the same full-screen image on the landing page, login page, registration page, and every dashboard.
+
+Asset requirements
+Use licensed, openly usable, or project-owned imagery.
+Do not assume external image URLs will always be available.
+Prefer reliable assets that can be bundled locally when practical.
+Provide suitable fallbacks if an image fails to load.
+Use appropriate alt text for meaningful images.
+Keep decorative images out of screen-reader reading order.
+Optimize image sizes.
+Do not sacrifice accessibility for visual effects.
+10. PUBLIC LANDING PAGE
+
+Build a complete, responsive landing page that explains CivicSync clearly.
+
+The landing page must be accessible without authentication.
+
+Section 1: Navigation
+
+Include:
+
+CivicSync logo or custom civic-themed symbol.
+Home.
+Public Alerts.
+Report an Issue.
+How It Works.
+About.
+Contact or Help.
+Sign In.
+Get Started.
+
+The logo should use a distinctive, professional identity that suggests connected communities, verified information, or civic infrastructure.
+
+The navigation must adapt to mobile screens.
+
+For public visitors, show Sign In and Get Started.
+
+For authenticated users, show their appropriate dashboard link and account menu.
+
+Section 2: Hero
+
+Use the headline:
+
+One Alert. One Source. A Safer Community.
+
+Suggested supporting text:
+
+"Stay informed with verified public alerts, report local civic problems, and follow every update through one connected platform."
+
+Primary CTA: Explore Public Alerts.
+
+Secondary CTA: Report a Civic Issue.
+
+If a visitor is not authenticated, the Report a Civic Issue action should explain that sign-in is required and lead to authentication.
+
+Include a relevant urban background image or polished city-themed illustration.
+
+Add a subtle location map or notification visualization if it improves the design.
+
+Do not overcrowd the hero.
+
+Section 3: Public impact indicators
+
+Show concise metrics such as:
+
+Public alerts published.
+Civic reports submitted.
+Reports resolved.
+Organizations participating.
+
+Only use live database counts when available.
+
+If using seed data, label the section clearly as sample demonstration data. Never present invented statistics as real-world impact.
+
+Section 4: Latest public alerts
+
+Display published, non-expired alerts.
+
+Each card should include:
+
+Title.
+Category.
+Severity.
+Issuing organization.
+Affected location.
+Published date.
+Expiry or last-updated time when relevant.
+View Details action.
+
+Include loading, empty, and error states.
+
+Section 5: How CivicSync works
+
+Present three clear steps:
+
+Receive verified public information.
+Report a civic issue with relevant details.
+Track progress until the issue is resolved or formally closed.
+
+Use distinct illustrations or icon treatments.
+
+Section 6: Civic issue categories
+
+Include:
+
+Roads and potholes.
+Streetlights.
+Waste management.
+Water supply.
+Drainage and sanitation.
+Public infrastructure.
+Public spaces.
+Other civic issues.
+
+Categories should be configurable through the system rather than permanently embedded throughout the code.
+
+Section 7: How organizations respond
+
+Explain the operational workflow:
+
+Reports are received.
+Authorized administrators review them.
+Eligible work is assigned.
+Field staff record progress.
+Resolution evidence is submitted.
+Authorized personnel verify closure.
+Citizens can see relevant status updates.
+
+Do not claim guaranteed response times unless an actual service-level policy is configured.
+
+Section 8: Public trust and transparency
+
+Explain how CivicSync supports:
+
+Consistent published alerts.
+Traceable status changes.
+Clear responsibility.
+Evidence-based resolution.
+Appropriate access controls.
+Accountable operations.
+
+Do not make unsupported legal compliance claims.
+
+Section 9: Role-based entry points
+
+Create four visually distinct entry cards:
+
+Citizen.
+Organization Administrator.
+Field Staff.
+Platform Administrator.
+
+The first three can explain their respective workflows and direct users to login.
+
+The Platform Administrator entry must not create a public self-registration pathway. It should use an authorized administrator login route.
+
+Section 10: Final call to action
+
+Headline:
+
+"Better Information. Better Coordination. Better Communities."
+
+Buttons:
+
+Explore Public Alerts.
+Join CivicSync.
+Section 11: Footer
+
+Include:
+
+About CivicSync.
+Public Alerts.
+Help and Support.
+Privacy Policy.
+Terms of Use.
+Contact.
+Version information where appropriate.
+
+Do not invent official government affiliations or endorsements.
+
+11. AUTHENTICATION AND LOGIN EXPERIENCE
+
+Build a professional authentication system with separate, clear role entry points.
+
+Login page layout
+
+Use a polished split-screen layout:
+
+Left panel:
+
+Urban or community-themed visual.
+CivicSync logo.
+Short product message.
+One supporting illustration or image.
+A small rotating set of genuine product benefits if appropriate.
+
+Right panel:
+
+Sign-in form.
+Email.
+Password.
+Show/hide password.
+Remember-me option only if supported correctly.
+Forgot password.
+Sign In button.
+Citizen registration link.
+
+Provide a role selector or role-specific entry options only as a navigation convenience. The server must determine the user's actual permissions.
+
+If the selected entry role does not match the authenticated account's authorized role, display a clear error and provide a safe way to continue through the correct login route.
+
+Never trust a role sent from the frontend.
+
+Visual behavior
+Soft background texture.
+Subtle card shadows.
+Clear form boundaries.
+Accessible input focus states.
+Attractive mixed-color buttons.
+Subtle hover transitions.
+Smooth but restrained animations.
+Loading indicators during authentication.
+Inline field validation.
+Clear error messages.
+
+Do not use excessive glowing borders or flashing effects.
+
+Registration
+
+Create a separate citizen registration page with:
+
+Full name.
+Email.
+Password.
+Confirm password if appropriate.
+Optional phone number if required by the product configuration.
+Terms acknowledgement.
+Register button.
+Link to login.
+
+Validate inputs and handle duplicate accounts.
+
+Provide appropriate email-verification behavior if enabled by the authentication provider.
+
+Forgot password
+
+Implement the actual password-reset workflow using the selected authentication provider.
+
+Do not merely display a fake "email sent" success state.
+
+Session management
+Protect authenticated routes.
+Validate user status.
+Load role and organization information.
+Clear private caches on sign-out.
+Handle expired sessions.
+Prevent unauthorized role switching.
+Handle authentication failures gracefully.
+12. CITIZEN DASHBOARD
+
+Create a distinct citizen-focused dashboard using Forest Green + Soft Mint + Warm Cream.
+
+The citizen dashboard should prioritize personal activity, relevant public information, and the ability to report and track problems.
+
+Dashboard overview
+
+Display:
+
+Welcome message.
+Profile avatar or initials.
+Quick action: Report an Issue.
+Total reports submitted by the current citizen.
+Reports awaiting review.
+Reports in progress.
+Resolved reports.
+Recent personal activity.
+Latest relevant public alerts.
+
+All private report statistics must be calculated from records belonging to the authenticated citizen.
+
+Citizen navigation
+Overview.
+Public Alerts.
+Report an Issue.
+My Reports.
+Issue Map.
+Notifications.
+Saved Alerts.
+Profile and Preferences.
+Help and Support.
+
+Do not include administrator-only or field-staff-only management controls.
+
+Feature A: Public Alerts
+
+Display published alerts with:
+
+Search.
+Category filter.
+Severity filter.
+Location filter.
+Date filter.
+Active/expired status where relevant.
+Sorting.
+Pagination or load-more behavior.
+
+Alert cards must display the issuing organization and publication details.
+
+Citizens must not be able to edit official alert content.
+
+Feature B: Alert Details
+
+Show:
+
+Full title.
+Description.
+Issuing organization.
+Severity.
+Publication time.
+Last-updated time.
+Expiry time if applicable.
+Affected geographic area.
+Related instructions.
+Alert history when authorized and available.
+Save or unsave action.
+Notification preferences when relevant.
+
+Only display alerts that the current user is authorized to access.
+
+Feature C: Report an Issue
+
+Create a multi-step or well-organized form containing:
+
+Issue title.
+Description.
+Category.
+Location.
+Optional map pin.
+Optional address or landmark.
+Optional supporting images.
+Optional priority context.
+Submission confirmation.
+
+Validate the required fields.
+
+Allow supported image formats and enforce file-size limits.
+
+Use server-side validation and safe file handling.
+
+Generate a unique report identifier on the backend.
+
+On successful submission:
+
+Save the report.
+Create an initial status event.
+Record the submitting user.
+Record the creation time.
+Display the actual report identifier.
+Show a confirmation page.
+Provide a link to track the report.
+
+If saving fails, preserve the user's entered form data where safe and show a useful error.
+
+Feature D: My Reports
+
+Display only the authenticated citizen's reports.
+
+Provide:
+
+Search by report ID or title.
+Category filter.
+Status filter.
+Date filter.
+Sort by newest or oldest.
+Pagination.
+Report detail links.
+
+Each report card or row should include:
+
+Report ID.
+Title.
+Category.
+Location.
+Submission date.
+Current status.
+Last update.
+View Details button.
+Feature E: Report Tracking
+
+Use the following primary workflow:
+
+Submitted → Under Review → Assigned → In Progress → Resolved → Closed
+
+Additional states may include:
+
+More Information Required.
+Rejected.
+Reopened.
+On Hold.
+
+Implement permitted transitions on the backend.
+
+Show a visual timeline with:
+
+Event.
+Timestamp.
+Responsible actor where appropriate.
+Public-facing note.
+Relevant evidence or attachments.
+
+Do not display private staff notes or confidential internal information to citizens.
+
+When a report is rejected, provide the authorized reason.
+
+When more information is required, provide a way for the citizen to respond.
+
+When resolution is disputed, support the configured review or reopening workflow.
+
+Feature F: Issue Map
+
+Use React Leaflet.
+
+Display reports the citizen is authorized to view.
+
+Include:
+
+Map markers.
+Category filters.
+Status filters.
+Location search where supported.
+Marker clustering when necessary.
+Marker detail popovers.
+A list/map toggle.
+Appropriate loading and error states.
+
+Do not expose precise private addresses unnecessarily.
+
+Use a configured map-tile provider and follow its usage requirements.
+
+Feature G: Notifications
+
+Create an in-app notification center.
+
+Notifications may include:
+
+Report submitted.
+Report reviewed.
+More information requested.
+Report assigned.
+Work started.
+Resolution submitted.
+Report resolved.
+Report reopened.
+Relevant public alert published.
+
+Each notification should link to the relevant record when the user is authorized to access it.
+
+Support read/unread states and mark-as-read operations.
+
+Feature H: Saved Alerts
+
+Allow citizens to save or unsave alerts.
+
+Persist saved alerts in the database.
+
+Display the saved list and handle expired or unpublished alerts appropriately.
+
+Feature I: Profile and Preferences
+
+Allow citizens to manage permitted profile fields and preferences.
+
+Include:
+
+Name.
+Contact information where configured.
+Preferred language if supported.
+In-app notification preferences.
+Optional email or SMS preferences when the relevant integration is configured.
+
+Do not imply that SMS or email delivery works without a configured provider.
+
+13. ORGANIZATION ADMINISTRATOR DASHBOARD
+
+Create a dedicated operational dashboard using Deep Burgundy + Rose + Sand.
+
+This dashboard should feel like a professional municipal operations workspace.
+
+Administrator overview
+
+Display database-backed statistics such as:
+
+Total reports in the organization.
+New submissions.
+Reports awaiting review.
+Reports awaiting assignment.
+Active work.
+Overdue reports.
+Resolved reports.
+Average resolution time where enough reliable data exists.
+Workload by department.
+Category distribution.
+Recent administrative activity.
+
+Do not fabricate metrics or calculate misleading averages from incomplete data.
+
+Administrator navigation
+Overview.
+Report Review Queue.
+All Organization Reports.
+Assignment Management.
+Public Alert Management.
+Departments and Categories.
+Staff Directory.
+Resolution Verification.
+Analytics and Reports.
+Notifications.
+Audit History.
+Organization Settings.
+Feature A: Report Review Queue
+
+Show newly submitted reports awaiting review.
+
+Administrators can:
+
+Open report details.
+Review category and location.
+Inspect uploaded evidence.
+Check for possible duplicates using deterministic matching rules.
+Approve a report for processing.
+Request additional information.
+Reject an invalid or out-of-scope report.
+Record the reason for the decision.
+
+Possible duplicate matches should be suggestions for human review, not automatic accusations or destructive actions.
+
+Feature B: Report Management
+
+Provide a searchable, filterable table with:
+
+Report ID.
+Title.
+Category.
+Location.
+Current status.
+Assigned staff member.
+Department.
+Creation date.
+Last updated.
+SLA status if configured.
+
+Provide sorting, pagination, and export for authorized data.
+
+Clicking a report must open a detailed view.
+
+Feature C: Assignment Management
+
+Allow authorized administrators to:
+
+Select a report.
+Choose an eligible department.
+Select an active staff member.
+Set a priority.
+Add assignment instructions.
+Set a target date when policy allows.
+Confirm the assignment.
+
+Validate that the selected staff member belongs to an authorized organization and is eligible for the assignment.
+
+Record the assignment in the audit history.
+
+Notify the assigned staff member.
+
+Do not silently overwrite previous assignments.
+
+Feature D: Public Alert Management
+
+Allow authorized administrators to:
+
+Create an alert draft.
+Enter title and description.
+Choose category.
+Set severity.
+Define affected locations.
+Add instructions.
+Set publication time.
+Set expiry time.
+Preview the alert.
+Publish the alert.
+Update an existing alert.
+Withdraw or archive an alert according to policy.
+
+Use a publication status such as:
+
+Draft → Scheduled → Published → Expired or Withdrawn
+
+Validate dates and required information.
+
+Record every publication and update event.
+
+Do not allow citizens or field staff to publish official alerts.
+
+Feature E: Resolution Verification
+
+When field staff submit a resolution:
+
+Show the original report.
+Display the work performed.
+Display before-and-after evidence where available.
+Show the field staff member and timestamps.
+Allow authorized verification.
+Allow the administrator to request more work.
+Allow rejection of insufficient evidence with a recorded reason.
+Mark the issue resolved only through the authorized workflow.
+
+Where the organization requires citizen confirmation, implement that as an additional policy-driven step.
+
+Feature F: Department and Category Management
+
+Allow administrators with the required permission to manage:
+
+Department names.
+Category-to-department mappings.
+Active/inactive departments.
+Category visibility.
+Assignment eligibility.
+
+Use these configurations in report submission and assignment workflows.
+
+Feature G: Staff Management
+
+Provide:
+
+Staff directory.
+Staff details.
+Active status.
+Department membership.
+Assignment workload.
+Assignment history.
+Authorized invitation or provisioning actions.
+
+Do not allow unrestricted public creation of staff accounts.
+
+Feature H: Analytics
+
+Use Recharts to visualize actual authorized data.
+
+Include:
+
+Reports by category.
+Reports by status.
+Reports by department.
+Reports over time.
+Resolution-time distribution.
+Workload by staff member.
+Overdue reports.
+Alert publication activity.
+
+Include meaningful time filters.
+
+All charts must respond to filters and database changes.
+
+If data is insufficient, show a clear empty state rather than invented analytics.
+
+Feature I: Organization Audit History
+
+Record relevant administrative events.
+
+Display:
+
+Actor.
+Action.
+Target record.
+Timestamp.
+Previous and new values where appropriate.
+Recorded reason where applicable.
+
+Audit records must be append-only from the normal application interface.
+
+14. FIELD STAFF DASHBOARD
+
+Create a field-operations workspace using Graphite + Safety Orange + Warm Gray.
+
+This interface should emphasize task execution, location awareness, and quick updates.
+
+Overview
+
+Display:
+
+My assigned reports.
+New assignments.
+Tasks in progress.
+Tasks awaiting verification.
+Overdue assignments.
+Recently completed work.
+Upcoming target dates where configured.
+Field staff navigation
+My Work.
+Assignment Map.
+Report Details.
+Progress Updates.
+Evidence Uploads.
+Work History.
+Notifications.
+Profile.
+Feature A: My Work
+
+Display only the assignments the authenticated staff member is authorized to access.
+
+Provide filters for:
+
+Status.
+Category.
+Priority.
+Department.
+Due date.
+Location.
+
+Use clear task cards with report ID, location, title, priority, and current status.
+
+Feature B: Assignment Details
+
+Display:
+
+Issue title.
+Description.
+Category.
+Location.
+Map.
+Submission date.
+Assignment date.
+Current status.
+Authorized citizen-provided evidence.
+Assignment instructions.
+Relevant public-facing history.
+
+Protect personal information that field staff do not need to complete their work.
+
+Feature C: Progress Updates
+
+Allow field staff to perform permitted transitions, such as:
+
+Assigned → In Progress
+
+In Progress → Awaiting Verification
+
+In Progress → On Hold, when authorized
+
+Provide a form for:
+
+Work performed.
+Progress note.
+Optional reason for delay.
+Optional evidence.
+Timestamp generated by the server.
+
+Prevent unauthorized transitions.
+
+Record each change in the report history.
+
+Feature D: Evidence Uploads
+
+Support relevant image evidence.
+
+Provide:
+
+File selection.
+Preview.
+Upload progress.
+File-size validation.
+Supported file-type validation.
+Upload success or failure state.
+Clear association with the report and work event.
+
+Do not claim an image is a verified after-photo simply because it was uploaded. Label it accurately.
+
+Feature E: Assignment Map
+
+Show assigned work on a map.
+
+Allow staff to open report details from map markers.
+
+Provide list/map switching and relevant filters.
+
+If directions are offered, use a real supported mapping link or service. Do not simulate navigation.
+
+Feature F: Work History
+
+Show the staff member's authorized assignment history.
+
+Include completion events, status changes, notes, and evidence references.
+
+Do not allow staff to rewrite previous audit entries.
+
+15. PLATFORM SUPER ADMINISTRATOR DASHBOARD
+
+Create a separate platform management interface using Deep Plum + Lavender + Silver.
+
+This is not another copy of the organization dashboard.
+
+The super-administrator interface should focus on platform governance, organization onboarding, account control, security events, and system health.
+
+Overview
+
+Display authorized platform-level metrics:
+
+Total organizations.
+Active organizations.
+Pending organization approvals.
+Registered accounts.
+Active staff accounts.
+Public alerts.
+Total civic reports.
+Current integration status.
+Recent platform events.
+Navigation
+Platform Overview.
+Organization Directory.
+Organization Onboarding.
+User and Role Management.
+Platform Categories.
+Global Configuration.
+Audit Logs.
+Integration Health.
+System Status.
+Platform Notifications.
+Feature A: Organization Directory
+
+Display:
+
+Organization name.
+Organization type.
+Region or service area.
+Account status.
+Created date.
+Authorized administrator count.
+Report volume.
+
+Allow authorized platform administrators to:
+
+View organization details.
+Approve onboarding.
+Suspend an organization.
+Reactivate an organization.
+Review its authorized administrators.
+Inspect relevant activity.
+
+Record sensitive actions in the audit log.
+
+Feature B: User and Role Management
+
+Provide account lookup and authorized administrative operations.
+
+Allow permitted actions such as:
+
+View account status.
+Review role assignments.
+Activate or deactivate an account.
+Initiate role corrections.
+Review organization membership.
+Trigger supported account recovery workflows.
+
+Require appropriate confirmation for sensitive actions.
+
+Never allow the frontend alone to determine administrative privileges.
+
+Feature C: Global Configuration
+
+Allow authorized configuration of:
+
+Global report categories.
+Platform-wide notification rules.
+Supported upload limits.
+Organization onboarding settings.
+Default workflow policies.
+Configurable system parameters.
+
+Validate changes and record audit events.
+
+Feature D: Audit Logs
+
+Provide filters for:
+
+Actor.
+Organization.
+Action.
+Target record.
+Date range.
+Event severity.
+
+Keep the audit history protected against ordinary editing and deletion.
+
+Feature E: Integration Health
+
+Show the configured status of:
+
+Database connectivity.
+Authentication provider.
+File storage.
+Email provider, if configured.
+SMS provider, if configured.
+Map service configuration.
+
+Do not expose secrets or sensitive configuration values.
+
+Distinguish between:
+
+Configured and healthy.
+Configured but failing.
+Not configured.
+Unknown.
+
+Do not report a successful integration test unless the test actually succeeds.
+
+16. CORE DATA MODEL
+
+Create a relational schema with appropriate primary keys, foreign keys, indexes, timestamps, and constraints.
+
+At minimum, implement the following entities.
+
+User profiles
+
+Fields:
+
+id.
+auth_user_id.
+full_name.
+email or linked authentication identity.
+role.
+organization_id when applicable.
+department_id when applicable.
+account_status.
+created_at.
+updated_at.
+
+Keep the authentication provider's identity as the source of truth for credentials.
+
+Organizations
+
+Fields:
+
+id.
+name.
+organization_type.
+service_area.
+description.
+status.
+created_at.
+updated_at.
+Departments
+
+Fields:
+
+id.
+organization_id.
+name.
+description.
+active_status.
+created_at.
+updated_at.
+Civic reports
+
+Fields:
+
+id.
+report_number.
+submitted_by.
+organization_id once assigned to an authorized organization.
+department_id where applicable.
+title.
+description.
+category_id.
+status.
+priority.
+location description.
+latitude and longitude when available and appropriate.
+created_at.
+updated_at.
+resolved_at when applicable.
+closed_at when applicable.
+
+Do not require an organization assignment before submission if the initial report must be routed through an organization review queue. Define the initial routing policy explicitly.
+
+Report assignments
+
+Fields:
+
+id.
+report_id.
+assigned_to.
+assigned_by.
+department_id.
+instructions.
+assigned_at.
+target_at when configured.
+unassigned_at when applicable.
+assignment_status.
+
+Preserve historical assignments.
+
+Report status history
+
+Fields:
+
+id.
+report_id.
+previous_status.
+new_status.
+actor_id.
+public_note when appropriate.
+internal_note when authorized.
+created_at.
+
+Do not expose internal notes to unauthorized users.
+
+Report evidence
+
+Fields:
+
+id.
+report_id.
+uploaded_by.
+storage_path.
+evidence_type.
+caption.
+created_at.
+
+Keep file storage private by default where appropriate.
+
+Use authorized access to serve private evidence.
+
+Public alerts
+
+Fields:
+
+id.
+title.
+description.
+category_id.
+severity.
+issuing_organization_id.
+publication_status.
+affected_area.
+published_at.
+expires_at.
+created_by.
+updated_by.
+created_at.
+updated_at.
+Alert history
+
+Fields:
+
+id.
+alert_id.
+actor_id.
+action.
+relevant change summary.
+created_at.
+Notifications
+
+Fields:
+
+id.
+recipient_user_id.
+notification_type.
+title.
+message.
+related_entity_type.
+related_entity_id.
+read_at.
+created_at.
+Saved alerts
+
+Fields:
+
+id.
+user_id.
+alert_id.
+created_at.
+
+Enforce uniqueness for the user-alert pair.
+
+Audit events
+
+Fields:
+
+id.
+actor_id.
+organization_id where relevant.
+action.
+target_type.
+target_id.
+relevant metadata.
+created_at.
+
+Restrict access to audit information.
+
+Categories
+
+Fields:
+
+id.
+name.
+description.
+category_type.
+default_department_id when appropriate.
+active_status.
+created_at.
+updated_at.
+
+Adapt the schema as needed, but preserve the relationships and security requirements.
+
+Use indexes for commonly queried fields such as report status, organization ID, submitter ID, assigned staff, category, and timestamps.
+
+Avoid storing unnecessary sensitive information.
+
+17. BUSINESS RULES AND WORKFLOW ENGINE
+
+Implement workflow rules on the backend.
+
+The frontend must not be the authority on whether a transition is permitted.
+
+Civic report lifecycle
+
+Typical lifecycle:
+
+Submitted → Under Review → Assigned → In Progress → Awaiting Verification → Resolved → Closed
+
+Support controlled alternatives such as:
+
+More Information Required.
+Rejected.
+On Hold.
+Reopened.
+
+Define permitted transitions and the roles allowed to initiate them.
+
+Examples:
+
+A citizen may submit a new report.
+An organization administrator may review the report.
+An authorized administrator may assign work.
+Assigned field staff may record progress.
+Authorized staff may submit a resolution for verification.
+An authorized administrator may approve or reject the proposed resolution.
+A citizen may request review or reopening when permitted by policy.
+Only authorized roles may perform final closure.
+
+Validate each transition against:
+
+Current report status.
+Authenticated actor.
+Actor role.
+Organization membership.
+Assignment relationship.
+Required fields.
+Relevant policy settings.
+
+Every successful transition must create a history entry and the appropriate notifications.
+
+Alert lifecycle
+
+Support:
+
+Draft → Scheduled → Published → Expired or Withdrawn
+
+Validate publication and expiry rules.
+
+Only authorized organization administrators may publish alerts for their organization.
+
+The backend must verify permissions and record publication history.
+
+Duplicate reports
+
+Use deterministic matching suggestions based on configurable criteria such as:
+
+Similar category.
+Nearby coordinates.
+Similar submission time.
+Matching normalized address.
+Similar title.
+
+Do not automatically merge or discard reports without an authorized review process.
+
+Assignment policy
+
+Use configurable category-to-department mappings.
+
+Allow authorized administrators to select eligible staff.
+
+Do not automatically assign work to an arbitrary user.
+
+Resolution verification
+
+Require the appropriate work details and evidence based on configured policy.
+
+Record verification outcomes and reasons.
+
+Do not silently mark reports resolved simply because field staff clicked a button.
+
+18. API DESIGN
+
+Create a documented REST API.
+
+Use consistent response structures and appropriate HTTP status codes.
+
+At minimum, implement endpoints corresponding to the following capabilities.
+
+Authentication and user profile
+Get the authenticated user's profile.
+Update permitted profile fields.
+Retrieve permitted user settings.
+Update permitted notification preferences.
+
+Authentication should be handled through the selected authentication provider, with backend verification of the authenticated identity.
+
+Public alerts
+List published alerts.
+Retrieve public alert details.
+Retrieve relevant alert history.
+Save an alert.
+Remove a saved alert.
+Retrieve saved alerts.
+Civic reports
+Create a report.
+List the authenticated citizen's reports.
+Retrieve an authorized report.
+List organization reports.
+Retrieve a review queue.
+Update report review status.
+Request additional information.
+Reject a report with a reason.
+Assign a report.
+Update an assignment.
+Submit a field progress update.
+Upload evidence.
+Submit a resolution for verification.
+Verify or reject a proposed resolution.
+Reopen a report where permitted.
+Retrieve report status history.
+Notifications
+List notifications for the authenticated user.
+Retrieve unread count.
+Mark a notification as read.
+Mark authorized notifications as read in bulk.
+Organization administration
+Retrieve organization analytics.
+Manage permitted departments.
+Manage category mappings.
+List eligible staff.
+Invite or provision staff through the configured mechanism.
+Publish and update organization alerts.
+Export authorized reports.
+Platform administration
+List organizations.
+Review onboarding requests.
+Update authorized organization status.
+Manage authorized account roles.
+Retrieve platform analytics.
+Retrieve authorized audit events.
+Update permitted global configuration.
+General API requirements
+Validate all request bodies.
+Validate route parameters.
+Validate query parameters.
+Authenticate protected requests.
+Enforce authorization for every protected resource.
+Apply pagination and filtering.
+Use safe database queries.
+Return structured errors.
+Avoid leaking stack traces or secrets.
+Add rate limiting to sensitive endpoints.
+Validate uploaded files.
+Document required permissions.
+Ensure that the API never trusts a user ID or role supplied by the client without verification.
+19. SECURITY AND PRIVACY
+
+Security must be implemented throughout the system.
+
+Authentication
+Verify the authenticated identity on protected requests.
+Handle session expiry.
+Do not store plaintext passwords.
+Do not implement custom password storage when using a managed authentication provider.
+Restrict sensitive authentication operations.
+Authorization
+
+Enforce role-based access control on the backend.
+
+Where applicable, enforce organization-level and record-level permissions.
+
+A citizen must not be able to retrieve another citizen's private report simply by changing a URL.
+
+A field staff member must not be able to access arbitrary assignments.
+
+An organization administrator must not access unrelated organizations' private records.
+
+A normal user must not be able to promote themselves to an administrative role.
+
+Database security
+Configure row-level security where appropriate.
+Use least-privilege database access.
+Keep privileged keys on the server.
+Protect sensitive records.
+Validate organization boundaries.
+Avoid broad policies that grant access to every authenticated user.
+File security
+Validate file types and file sizes.
+Use safe filenames and storage paths.
+Avoid executing uploaded content.
+Apply authorization to private evidence.
+Do not assume a hidden frontend button provides file security.
+Input validation
+
+Validate user input on the server.
+
+Protect against injection, malicious file uploads, unauthorized data modification, and unsafe rendering.
+
+Auditability
+
+Record sensitive actions such as:
+
+Publishing an alert.
+Changing a report status.
+Assigning a report.
+Changing a user's role.
+Suspending an organization.
+Verifying a resolution.
+Updating global settings.
+
+Do not expose private internal notes or security information to unauthorized users.
+
+20. NOTIFICATIONS
+
+Build a working in-app notification system.
+
+Notification events
+
+Citizen notifications:
+
+Report submitted.
+Report status changed.
+Additional information requested.
+Report assigned for processing.
+Work started.
+Resolution submitted.
+Resolution approved or rejected.
+Report reopened.
+Relevant alert published.
+
+Field staff notifications:
+
+New assignment.
+Assignment changed.
+Assignment cancelled.
+Deadline approaching where configured.
+Verification request.
+Administrator response.
+
+Organization administrator notifications:
+
+New report submitted.
+Report awaiting review.
+Unassigned report.
+Overdue assignment.
+Resolution awaiting verification.
+Alert expiry approaching where configured.
+
+Platform administrator notifications:
+
+Organization onboarding request.
+Organization status change.
+Important system health event.
+Relevant security or administration event.
+Notification requirements
+Persist notifications in the database.
+Link each notification to its relevant record.
+Support unread counts.
+Support marking notifications as read.
+Enforce recipient authorization.
+Avoid duplicate notifications when possible.
+Record notification creation.
+Clearly distinguish in-app notifications from external delivery.
+
+Email and SMS should be optional integrations requiring explicit configuration.
+
+21. ANALYTICS AND REPORT EXPORTS
+
+Build analytics from actual authorized database records.
+
+Organization analytics
+
+Include:
+
+Total reports by category.
+Reports by current status.
+Reports by department.
+Reports submitted over time.
+Resolution-time trends.
+Staff workload.
+Overdue reports.
+Alert publication trends.
+Platform analytics
+
+Include:
+
+Organization onboarding.
+Active organizations.
+Account distribution by role.
+Report volume across organizations.
+Alert publication activity.
+System integration health.
+Filtering
+
+Provide appropriate date ranges and relevant filters.
+
+Charts and tables must update when filters change.
+
+Exports
+
+Allow authorized users to export relevant reports as CSV.
+
+Exports must respect the user's permissions and active filters.
+
+Do not export private data the current user is not authorized to view.
+
+If PDF export is implemented, use a proper document-generation library rather than pretending that a browser print button creates a structured report.
+
+22. SEED DATA AND DEMONSTRATION MODE
+
+Create realistic sample data for initial development and testing.
+
+Possible sample records include:
+
+Reports about potholes.
+Broken streetlights.
+Waste collection problems.
+Drainage blockages.
+Water supply interruptions.
+Public infrastructure maintenance.
+Published alerts for planned road closures or local service interruptions.
+
+Use fictional names, fictional organizations, and clearly identified demonstration data.
+
+Seed data requirements
+
+Include:
+
+Several civic categories.
+Multiple organizations.
+Departments.
+Citizen accounts for authorized test environments.
+Organization administrator accounts.
+Field staff accounts.
+Sample alerts.
+Reports at different lifecycle stages.
+Assignment records.
+Status history.
+Evidence references where appropriate.
+Notifications.
+Example analytics.
+
+Do not create a publicly accessible default super-administrator account with a known password.
+
+Provide a secure development-only way to initialize test accounts.
+
+Do not expose demo credentials in a production deployment.
+
+Demonstration mode
+
+If backend credentials are not available during the initial interface build, use a clearly identified development mock mode.
+
+The mock mode must:
+
+Be explicitly configured.
+Use predictable sample data.
+Simulate API operations consistently.
+Keep state during the active demo session where appropriate.
+Display a development/demo indicator.
+Avoid claiming that mock records are persisted to the production database.
+
+Once the real backend is configured, use actual API operations.
+
+Do not silently fall back to fake success responses when a real API fails.
+
+23. ERROR HANDLING AND USER FEEDBACK
+
+Every important workflow must include:
+
+Loading state.
+Success state.
+Validation errors.
+Server errors.
+Empty state.
+Permission-denied state.
+Session-expired state.
+Network failure state where applicable.
+
+Examples:
+
+If a report submission fails, show the error and allow a safe retry.
+
+If the user lacks permission, explain that the action is not authorized.
+
+If there are no alerts, show a meaningful empty state.
+
+If a chart has no data, explain that no records match the selected filters.
+
+If an image upload fails, show the reason where possible and allow a retry.
+
+Use accessible toast notifications for lightweight feedback.
+
+Use confirmation dialogs for destructive or sensitive operations.
+
+Avoid showing technical stack traces to ordinary users.
+
+Log diagnostic information safely on the server.
+
+24. RECOMMENDED PROJECT STRUCTURE
+
+Use a clean structure similar to the following, adapting it to the existing repository.
+
+frontend/
+src/
+app/
+components/
+common/
+forms/
+navigation/
+charts/
+maps/
+notifications/
+layouts/
+pages/
+landing/
+auth/
+citizen/
+organization-admin/
+field-staff/
+platform-admin/
+public-alerts/
+civic-reports/
+settings/
+features/
+alerts/
+reports/
+assignments/
+notifications/
+analytics/
+organizations/
+audit/
+hooks/
+services/
+api/
+contexts/
+types/
+utils/
+styles/
+
+backend/
+src/
+config/
+middleware/
+routes/
+controllers/
+services/
+repositories/
+validation/
+policies/
+jobs/
+utils/
+types/
+app.ts
+server.ts
+
+database/
+migrations/
+seed/
+
+docs/
+architecture.md
+database-schema.md
+api-reference.md
+permissions.md
+setup.md
+deployment.md
+
+Do not create every folder as an empty placeholder.
+
+Each implemented module must contain actual working code.
+
+Keep database operations, business rules, and HTTP handling separated where practical.
+
+25. REQUIRED UI COMPONENTS
+
+Create reusable components for:
+
+Main navigation.
+Responsive sidebar.
+Mobile navigation.
+Breadcrumbs.
+User menu.
+Role badges.
+Status badges.
+Alert severity badges.
+Dashboard statistic cards.
+Search bars.
+Filter panels.
+Data tables.
+Pagination.
+Report cards.
+Alert cards.
+Report timelines.
+Assignment cards.
+Image upload fields.
+Map markers and popovers.
+Chart containers.
+Notification lists.
+Confirmation dialogs.
+Form validation messages.
+Toast notifications.
+Loading skeletons.
+Empty states.
+Error boundaries.
+Permission-denied screens.
+
+Support page-specific colors through design tokens and theme classes.
+
+Do not hardcode a different unrelated design system into every component.
+
+26. NAVIGATION AND PAGE-LEVEL DESIGN RULES
+
+Each feature page must have a clear purpose.
+
+The dashboard should provide a high-level overview and shortcuts, not duplicate every complete feature page.
+
+For example:
+
+The citizen dashboard shows report summaries; My Reports contains the full searchable report list.
+The administrator dashboard shows review statistics; Report Review Queue contains the actual review workflow.
+The field staff dashboard shows workload summaries; My Work contains the complete task list.
+The super-administrator dashboard shows platform summaries; Organization Directory contains the complete organization management interface.
+
+When a user clicks a dashboard action, navigate to the actual feature page or open the appropriate functional dialog.
+
+Do not repeat entire feature content on the landing page, dashboard, and dedicated module.
+
+Use breadcrumbs and page headings to make navigation clear.
+
+Preserve filter state where useful.
+
+Support direct navigation to authorized record details.
+
+Handle invalid IDs and missing records gracefully.
+
+27. FUNCTIONALITY ACCEPTANCE CHECKLIST
+
+Do not consider the application complete until these workflows have been tested.
+
+Authentication
+Citizen registration works.
+Login works.
+Invalid credentials produce a useful error.
+Password reset follows the configured provider workflow.
+Protected routes reject unauthenticated access.
+Role-based redirects work.
+Disabled accounts cannot access protected operations.
+Sign-out ends the session.
+A signed-out user cannot access private data through browser navigation.
+Citizen workflows
+Citizen can view published alerts.
+Citizen can filter alerts.
+Citizen can open alert details.
+Citizen can submit a civic report.
+The report is actually saved.
+A report ID is generated.
+Citizen can see their own report.
+Citizen cannot access another citizen's private report.
+Citizen can view status history.
+Citizen can respond to a request for additional information when permitted.
+Citizen can save and unsave alerts.
+Citizen can mark notifications as read.
+Organization administrator workflows
+Administrator can view organization reports.
+Administrator can review a report.
+Administrator can request more information.
+Administrator can reject a report with a reason.
+Administrator can assign eligible staff.
+The assignment is persisted.
+The assigned staff member receives a notification.
+Administrator can publish an authorized alert.
+Published alerts appear in the public alert feed.
+Administrator can inspect resolution evidence.
+Authorized verification updates the report status.
+Analytics respond to actual data.
+Field staff workflows
+Field staff sees only authorized assignments.
+Staff can open assignment details.
+Staff can update permitted statuses.
+Staff can submit progress notes.
+Staff can upload evidence.
+The report history records changes.
+Unauthorized assignment modifications are rejected.
+Platform administrator workflows
+Authorized administrator can view organizations.
+Organization onboarding can be reviewed.
+Organization status changes are persisted.
+Unauthorized users cannot access platform administration.
+Sensitive actions are audited.
+Audit logs cannot be altered through normal application controls.
+UI/UX
+Every navigation item leads to the correct page.
+Every visible button has a working action or a clearly explained disabled state.
+All forms validate input.
+All pages have appropriate loading and error states.
+Color contrast remains accessible.
+Background images do not obscure content.
+Responsive layouts work.
+Each role has a distinct dashboard.
+Each major feature has a distinct mixed-color visual identity.
+No private information remains visible after sign-out.
+Technical quality
+Frontend production build succeeds.
+Backend starts without errors.
+Database migrations run successfully.
+API endpoints return valid structured responses.
+No unresolved imports remain.
+No accidental duplicate routes exist.
+No exposed secrets exist.
+No unauthorized access paths exist.
+No broken JSON parsing or unexpected HTML responses are silently treated as valid API data.
+No empty .map() or similar runtime errors occur because of unvalidated response shapes.
+Failed API requests display appropriate error messages.
+28. TESTING STRATEGY
+
+Create tests for important business rules and permissions.
+
+At minimum, test:
+
+A citizen cannot access another citizen's private report.
+A citizen cannot publish an official alert.
+A field staff member cannot assign arbitrary work.
+An organization administrator cannot access an unrelated organization's private reports.
+A platform administrator action is recorded in the audit log.
+An invalid report status transition is rejected.
+A valid assignment creates the correct assignment and history records.
+A published alert appears in the public alert feed.
+A citizen receives an appropriate notification when their report changes status.
+Sign-out prevents subsequent private API requests from succeeding without authentication.
+
+Add frontend tests for critical forms and components where practical.
+
+Run linting, type checks, and production builds.
+
+Fix the underlying issue rather than hiding errors with empty catch blocks, disabled validation, or hardcoded fallback values.
+
+29. IMPLEMENTATION ORDER
+
+Build the application in the following sequence.
+
+Phase 1: Repository inspection and foundation
+Inspect existing files.
+Identify the current architecture.
+Confirm dependencies.
+Create or repair the project structure.
+Establish environment configuration.
+Create the shared design system.
+Establish route organization.
+Configure error handling.
+Phase 2: Database and authentication
+Create the schema and migrations.
+Configure authentication.
+Implement user profiles.
+Implement role and organization permissions.
+Protect API routes.
+Establish the initial test environment.
+Phase 3: Public website
+Build the landing page.
+Implement responsive navigation.
+Build public alerts.
+Build alert details.
+Add role-specific entry points.
+Apply the landing-page palette and visual assets.
+Phase 4: Citizen workflows
+Build the citizen dashboard.
+Implement issue reporting.
+Implement My Reports.
+Implement tracking.
+Implement the issue map.
+Implement saved alerts.
+Implement notifications and profile settings.
+Phase 5: Organization administrator
+Build the organization dashboard.
+Implement the review queue.
+Implement report management.
+Implement assignment management.
+Implement alert publishing.
+Implement departments and staff management.
+Implement resolution verification.
+Implement analytics and authorized exports.
+Phase 6: Field staff
+Build the field staff dashboard.
+Implement My Work.
+Implement assignment details.
+Implement progress updates.
+Implement evidence uploads.
+Implement the assignment map.
+Implement work history.
+Phase 7: Platform administrator
+Build the platform dashboard.
+Implement organization onboarding.
+Implement account and role management.
+Implement global configuration.
+Implement audit logs.
+Implement integration health.
+Phase 8: Integration and quality assurance
+Connect all frontend pages to actual backend endpoints.
+Test authorization.
+Test report lifecycle transitions.
+Test alert publication.
+Test notifications.
+Test uploads.
+Test charts and filters.
+Test responsive layouts.
+Fix console and server errors.
+Verify database persistence.
+Phase 9: Production readiness
+Configure environment variables.
+Verify database policies.
+Verify upload security.
+Verify production builds.
+Document setup and deployment.
+Provide an accurate list of completed features and external configuration requirements.
+
+Do not claim a phase is complete unless its required functionality has been implemented and tested.
+
+30. GOOGLE AI STUDIO IMPLEMENTATION INSTRUCTIONS
+
+You are building an application, not just generating a written proposal.
+
+Follow these instructions carefully.
+
+Inspect the existing project before modifying it.
+Identify the current entry point, routes, components, API layer, authentication flow, and database integration.
+Create an implementation plan internally, then begin making the changes.
+Prioritize working end-to-end functionality over decorative additions.
+Reuse existing working components where appropriate.
+Build the application incrementally without leaving conflicting implementations behind.
+Connect every implemented form to the appropriate API.
+Use real persistent storage for production functionality.
+Keep development mock data explicitly separated from production data.
+Do not fabricate successful API responses.
+Do not introduce AI, ML, LLM, RAG, IoT, or hardware dependencies.
+Do not expose privileged credentials.
+Implement role and organization checks on the backend.
+Test the important workflows after implementation.
+Resolve build errors, runtime errors, broken imports, failed requests, and authorization problems.
+Verify that all navigation links point to the correct routes.
+Verify that the four dashboards are genuinely distinct.
+Verify that each feature page has its own relevant mixed-color palette.
+Verify that the landing page, login page, registration page, and dashboards use appropriate visual assets without repeating the same background everywhere.
+Do not remove features simply because their backend integration is not yet configured. Implement the feature properly and clearly identify any external configuration still required.
+
+If a requirement depends on an unavailable credential, explain the required configuration and complete the portions that can be implemented without that credential.
+
+Do not stop after generating the landing page.
+
+Do not stop after generating the dashboard designs.
+
+Do not stop after implementing authentication while leaving the application features nonfunctional.
+
+Continue until the defined end-to-end workflows work, or clearly identify the remaining blockers.
+
+31. FINAL DELIVERABLES
+
+The completed CivicSync project must include:
+
+A polished public landing page.
+A functional authentication and registration system.
+Four distinct role-specific dashboards.
+Role-specific navigation and permissions.
+A public alert publishing and browsing workflow.
+A civic issue reporting workflow.
+A complete report tracking and assignment workflow.
+Field staff progress updates and evidence uploads.
+Resolution verification.
+Persistent in-app notifications.
+Geographic issue visualization.
+Operational analytics.
+Organization and account management.
+Audit history.
+Responsive page layouts.
+Consistent but page-specific mixed-color design themes.
+Appropriate background imagery.
+Database migrations and seed instructions.
+API documentation.
+Environment configuration examples.
+Setup and deployment documentation.
+Tests for critical workflows and permissions.
+A successful production build.
+A clear summary of completed functionality and any remaining external configuration.
+32. FINAL PRODUCT QUALITY STANDARD
+
+The final product must communicate three core values:
+
+Trust: Citizens can access published public information and follow the history of their own reports.
+
+Accountability: Authorized personnel can review reports, assign work, record progress, and verify resolutions.
+
+Coordination: Citizens, organization administrators, and field staff can work through a connected and traceable process.
+
+The landing page should feel polished and welcoming.
+
+The citizen dashboard should feel accessible and community-oriented.
+
+The organization administrator dashboard should feel operational and analytical.
+
+The field staff dashboard should feel practical and task-oriented.
+
+The platform administrator dashboard should feel secure and governance-focused.
+
+Each major feature should have a recognizable visual identity without sacrificing usability or consistency.
+
+Do not sacrifice real functionality for visual effects.
+
+Do not sacrifice security for convenience.
+
+Do not invent real-world impact, successful deliveries, or completed integrations.
+
+Do not claim the application is production-ready until the required security checks, backend workflows, and production build have been verified.
+
+Begin by inspecting the existing project, then implement CivicSync in the specified order. Deliver a cohesive, responsive, functional web application with persistent data, distinct user experiences, secure role-based access, and reliable end-to-end workflows.
